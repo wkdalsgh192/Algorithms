@@ -1,4 +1,4 @@
-package map;
+package hash;
 
 /*
  * 
@@ -74,7 +74,7 @@ public class Leetcode_1311_GetWatched {
 		return answer;
     }
 	public static void main(String[] args) {
-		String[][] watchedVideos = new String[][] {{"A","B"},{"C"},{"B","C"},{"D"}};
+		List<List<String>> watchedVideos = new ArrayList<>();
 		int[][] friends = new int[][] {{1,2},{0,3},{0,3},{1,2}};
 		int id = 0, level = 2;
 		new Leetcode_1311_GetWatched().watchedVideosByFriends(watchedVideos, friends, id, level);

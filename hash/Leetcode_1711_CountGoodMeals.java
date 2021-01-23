@@ -1,4 +1,4 @@
-package map;
+package hash;
 
 import java.util.*;
 public class Leetcode_1711_CountGoodMeals {
