@@ -59,6 +59,7 @@ public class BOJ_14502_Lab {
         int num = 0;
         int nr, nc;
         int[][] newMap = Arrays.stream(map).map(int[]::clone).toArray(int[][]::new);
+
         // int[][] newMap = new int[n][m];
         // for (int i = 0; i < n; i++) { // 최적화가 가능하다
         // newMap[i] = map[i].clone(); // 1차원 배열을 clone하면 깊은 복사가 된다.
