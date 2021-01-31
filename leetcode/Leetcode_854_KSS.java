@@ -6,63 +6,39 @@ import java.util.*;
  * Leetcode_854_KSS
  */
 public class Leetcode_854_KSS {
-    static StringBuilder a;
-    static Map<String, Integer> map = new HashMap<>();
-    static Queue<String> q = new LinkedList<>();
-
     public int kSimilarity(String A, String B) {
         // 맨 앞부터 일치하지 않는 캐릭터를 찾아서 바꿔 큐에 넣는 함수
-        if (A.equals(B))
-            return 0;
-
-        addQ(A, B);
-
-        // 큐에서 빼내서 만들기
-        int min = Integer.MAX_VALUE;
+        HashSet<String> seen = new HashSet<>();
+        Queue<String> q = new LinkedList<>();
+        seen.add(A);
+        int step = 0;
+        
         while (!q.isEmpty()) {
-            String curr = q.poll(); // String을 불러옴
-
-            if (B.equals(curr))
-                min = Math.min(min, map.get(curr));
-
-            // B랑 다른 경우
-            addQ(curr, B);
-        }
-
-        return min;
-    }
-
-    static void addQ(String A, String B) {
-        a = new StringBuilder(A);
-        // 맨 앞부터 일치하지 않는 캐릭터를 찾아서 바꿔 큐에 넣는 함수
-        for (int i = 0; i < a.length(); i++) {
-            if (a.charAt(i) != B.charAt(i)) { // aacc acac acca
-                for (int j = i + 1; j < a.length(); j++) {
-                    if (a.charAt(j) == B.charAt(i)) {
-                        System.out.println(a.toString());
-                        String str = swap(i, j, a);
-                        System.out.println(a.toString());
-                        // 변형된 str이 이미 있으면 최솟값을 선택해야함. 아예 없으면 원래 값 +1을 해야함
-                        if (map.containsKey(str))
-                            map.put(str, Math.min(map.get(str), map.getOrDefault(A, 0) + 1));
-                        else
-                            map.put(str, map.getOrDefault(A, 0) + 1);
-                        q.add(str);
-                        swap(i, j, a);
-                        System.out.println(a.toString());
-                        System.out.println("---------");
-                    }
+            for (int size = q.size(); size > 0; size--) { // 한 스텝마다 만들 수 있는 모든 문자열을 큐에 담아서 처리한다.
+                String str = q.poll();
+                if (str.equals(B))
+                    return step;
+                int i = 0;
+                while (i < str.length() && str.charAt(i) == B.charAt(i))
+                    i++;
+                for (int j = i + 1; j < str.length(); j++) {
+                    if (str.charAt(j) == B.charAt(j) || str.charAt(j) != B.charAt(i))
+                        continue;
+                    String newStr = swap(str, i, j); // str에는 영향을 주지 않는다.
+                    q.offer(newStr);
+                    seen.add(newStr);
                 }
-                break;
             }
+            step++;
         }
     }
 
-    static String swap(int i, int j, StringBuilder sb) {
-        char temp = sb.charAt(j);
-        sb.setCharAt(j, sb.charAt(i));
-        sb.setCharAt(i, temp);
-        return sb.toString();
+    static String swap(String str, int i, int j) {
+        char[] chars = str.toCharArray();
+        char temp = chars[i];
+        chars[i] = chars[j];
+        chars[j] = temp;
+        return new String(chars);
     }
 
     public static void main(String[] args) {
