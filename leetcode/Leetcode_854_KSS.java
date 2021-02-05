@@ -31,6 +31,8 @@ public class Leetcode_854_KSS {
             }
             step++;
         }
+        
+        return step;
     }
 
     static String swap(String str, int i, int j) {

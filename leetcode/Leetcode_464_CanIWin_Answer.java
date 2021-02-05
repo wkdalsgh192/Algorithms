@@ -2,7 +2,7 @@ package leetcode;
 
 import java.util.*;
 
-public class Leetcode_464_CanIWin {
+public class Leetcode_464_CanIWin_Answer {
     // public boolean canIWin(int mCI, int dT) {
 
     // if (dT <= mCI)
