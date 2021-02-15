@@ -1,3 +1,5 @@
+package bruteforce;
+
 import java.util.ArrayList;
 
 public class Programmers_BF_Mock_Answer {

@@ -1,3 +1,5 @@
+package bruteforce;
+
 import java.util.*;
 public class Programmers_BF_Mock {
 	
