@@ -1,4 +1,4 @@
-package DBFS;
+package dbfs;
 
 import java.io.BufferedReader;
 import java.io.IOException;

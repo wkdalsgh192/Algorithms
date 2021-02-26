@@ -1,4 +1,4 @@
-package DBFS;
+package dbfs;
 
 /*
 백준 18405 경쟁적 전염

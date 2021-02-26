@@ -1,4 +1,4 @@
-package DBFS;
+package dbfs;
 
 import java.util.HashMap;
 import java.util.LinkedList;
