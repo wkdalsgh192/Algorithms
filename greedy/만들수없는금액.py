@@ -9,7 +9,7 @@ def solution():
     number_set = set()
 
     for i in range(N):
-        sum = 0;
+        sum = 0
         for j in range(i, N):
             sum += number_list[j]
             number_set.add(sum)
@@ -19,6 +19,19 @@ def solution():
         answer += 1
 
     return answer
+
+def solution2():
+    n = int(input())
+    data = list(map(int, input().split()))
+    data.sort()
+
+    target = 1
+    for x in data:
+        if target < x:
+            return target
+        target += x
+    
+    print(target)
 
 
 if __name__ == "__main__":

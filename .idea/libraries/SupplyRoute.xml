@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="SupplyRoute">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/DBFS/SupplyRoute.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
