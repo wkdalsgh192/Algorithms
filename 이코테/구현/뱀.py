@@ -26,6 +26,7 @@ map[hx][hy] = 2
 
 # 사과가 남아있을 때까지한다
 while True:
+    print('current snake: ', snake)
     # 뱀이 이동할 좌표를 갱신한다.
     nx, ny = hx + dirs[curdir][0], hy + dirs[curdir][1]
     # 벽에 부딪히는 지 확인한다.

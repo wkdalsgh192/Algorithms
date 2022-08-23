@@ -17,7 +17,7 @@ def solution(n, weak, dist):
             for pos in range(i, i+dist[idx]+1):
                 if pos >= n:
                     pos -= n
-                if pos in weak and visited[pos] is False:
+                if visited[pos] is False:
                     cnt += 1
             if cnt >= max_cnt:
                 s_idx, max_cnt, cw = i, cnt, True
@@ -25,22 +25,20 @@ def solution(n, weak, dist):
             # 반시계방향으로 출발하는 경우
             cnt = 0
             for pos in range(i,i-dist[idx]-1):
-                if pos in weak and visited[pos] is False:
+                if visited[pos] is False:
                     cnt += 1
             if cnt >= max_cnt:
                 s_idx, max_cnt, cw = i, cnt, False
-
-        print(s_idx, max_cnt, cw)
         
         if cw:
-            for pos in range(s_idx, i+dist[idx]+1):
+            for pos in range(s_idx, s_idx+dist[idx]+1):
                 if pos >= n:
                     pos -= n
-                if pos in weak and visited[pos] is False:
+                if visited[pos] is False:
                     visited[pos] = True
         else:
-            for pos in range(s_idx, i-dist[idx]-1):
-                if pos in weak and visited[pos] is False:
+            for pos in range(s_idx, s_idx-dist[idx]-1):
+                if visited[pos] is False:
                     visited[pos] = True
             
         idx += 1
@@ -51,7 +49,9 @@ def solution(n, weak, dist):
         return -1
 
 n = 12
-weak = [1, 5, 6, 10]	
-dist = [1, 2, 3, 4]
+# weak = [1, 5, 6, 10]	
+weak = [1, 3, 4, 9, 10]
+# dist = [1, 2, 3, 4]
+dist = [3, 5, 7]
 
 print(solution(n, weak, dist))
