@@ -1,27 +1,30 @@
 def solution(N, stages):
-    stages.sort()
-    stage_list = [(i,0) for i in range(1, N+2)]
-    curr_total = 0
-    total = len(stages)
-    cnt = 0
-    value = 0
-    for stage in stages:
-        if value is not stage:
-            if value  > 0:
-                print(value, cnt, curr_total, cnt / (total-curr_total))
-                print(stage_list[value])
-                stage_list[value][1] = cnt / (total-curr_total)
-            
-            curr_total += cnt
-            cnt = 1 
-            value = stage
+    # 실패율 리스트 만들기
+    failures = [0] * (N + 2)
 
-    stage_list.sort(key=lambda x: x[1])
-    print(stage_list)
+    # 오름차순 정렬하기
+    stages.sort()
+
+    ## count 하는 부분에서 나는 틀림
+    s_len = len(stages)
+    for stage in set(stages):
+        cnt = stages.count(stage)
+        failures[stage] = cnt / s_len
+        s_len -= cnt
+
+    # 튜플로 묶기
+    failure_set = []
+    for i in range(1, N + 1):
+        print(i, failures[i])
+        failure_set.append((i, failures[i]))
+
+    failure_set.sort(key=lambda x: (-x[1], x[0]))
     answer = []
+    for f in failure_set:
+        print(f)
+        answer.append(f[0])
     return answer
 
 
 N = 5
 stages = [2, 1, 2, 6, 2, 4, 3, 3]
-solution(N, stages)
